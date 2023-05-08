@@ -14,6 +14,9 @@ struct CustomSlider: View {
 	@State var lastCoordinateValue: CGFloat = 0.0
 	var sliderRange: ClosedRange<Double> = 1...100
 	let thumbSize: CGFloat = 30
+	let minTrackColor: Color = .blue
+	let maxTrackColor: Color = .red
+	let trackHeight: CGFloat = 4
 	
 	var body: some View {
 		GeometryReader { gr in
@@ -27,8 +30,19 @@ struct CustomSlider: View {
 			
 			ZStack {
 				Rectangle()
-					.foregroundColor(.blue)
-					.frame(height: 4)
+					.foregroundColor(maxTrackColor)
+					.frame(width: gr.size.width, height: trackHeight)
+					.clipShape(Rectangle())
+				
+				HStack {
+					Rectangle()
+						.foregroundColor(minTrackColor)
+						.frame(width: sliderVal, height: trackHeight)
+					
+					Spacer()
+				}
+				.clipShape(Rectangle())
+
 				
 				HStack {
 					Circle()
