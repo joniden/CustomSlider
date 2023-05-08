@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
+	@State private var sliderValue: Double = 50
+	
+	var body: some View {
+		VStack {
+			Text("Slider Value: \(sliderValue)")
+				.padding(30)
+			
+			CustomSlider(value: $sliderValue)
+		}
+	}
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
